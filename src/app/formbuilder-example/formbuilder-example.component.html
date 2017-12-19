@@ -1,0 +1,31 @@
+<form [formGroup]="form">
+  <div class="form-group">
+    <label for="name">一般 Form 結構</label>
+    <input type="text" id="name" class="form-control"
+           formControlName="name" required />
+    <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
+      <p *ngIf="name.errors.required">Name is required.</p>
+    </div>
+  </div>
+  <div formGroupName="contact">
+    <div class="form-group">
+      <label for="detail">巢狀 Form 結構</label>
+      <input type="text" id="detail" class="form-control"
+             formControlName="detail" required/>
+      <div class="alert alert-danger" *ngIf="detail.touched && detail.invalid">
+        <p *ngIf="detail.errors.required">Detail is required.</p>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="list">Form List</label>
+    <input type="text" id="list" class="form-control"
+           #topic (keyup.enter)="addTopic(topic)" />
+      <ul class="list-group" >
+        <li class="list-group-item"
+            *ngFor="let topic of topics.controls">
+            {{ topic.value }}
+        </li>
+      </ul>
+  </div>
+</form>

@@ -1,0 +1,16 @@
+<form>
+  <div class="form-group">
+    <!--在 input # 屬性預設型別為 HTMLInputElement-->
+    <input type="text" class="form-control"
+          (keyup.enter)="addTopic(topic)"
+          #topic/>
+    <ul class="list-group">
+      <!--topics(FormArray) 第一個引數裝 FormControl 陣列-->
+      <li class="list-group-item"
+          *ngFor="let topic of topics.controls"
+          (click)="removeTopic(topic)">
+        {{ topic.value }}
+      </li>
+    </ul>
+  </div>
+</form>
